@@ -1,0 +1,172 @@
+/*MAIN*/
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #6c767e;
+}
+
+.sessaoAcesso {
+    width: 100%;
+    height: 100vh;
+    background: url('img/bg-cadastro.png') no-repeat;
+    background-size: cover;
+}
+
+.ajusteRow {
+    min-height: 100vh;
+}
+
+.boxCadastro {
+    min-height: 40vh;
+    border-radius: 8px;
+}
+
+.boxCadastro .formWrap {
+    margin-bottom: 3rem;
+}
+
+.boxCadastroEscola h3,
+.boxCadastro h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+}
+
+.logo {
+    width: 100px;
+}
+
+#senhaForca {
+    border-radius: 1rem;
+}
+
+.senhaEye {
+    position: absolute;
+    right: 0;
+    top: 0.75rem;
+    min-height: 3rem;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+.progressBar {
+    position: absolute;
+    background: #f19021;
+    border-radius: 16px;
+    -webkit-box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+    box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+    height: 1rem;
+}
+
+.progressBar b {
+    font-size: 1rem;
+    padding-left: 1rem;
+    font-weight: bold;
+}
+
+.modal-body h2 {
+    padding: 1rem 0;
+    position: relative;
+}
+
+.modal-body h2::after {
+    content: '';
+    border-bottom: 1px solid #dfdfdf;
+    position: absolute;
+    bottom: 7%;
+    width: 100%;
+    left: 0;
+}
+
+#senhaBarra {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    top: 1.75rem;
+}
+
+#labelSenha {
+    display: none;
+    margin-right: 0.75rem;
+}
+
+a {
+    color: #f19021;
+    font-weight: bold;
+    /*transition: all 0.1s ease-in;*/
+}
+
+a:hover {
+    color: #be6c0f;
+    text-decoration: none;
+}
+
+
+/*CARDS*/
+
+.card {
+    background: #fff;
+    padding: 1rem;
+    -webkit-box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+    box-shadow: 0px 11px 29px -9px rgba(0, 0, 0, 0.14);
+}
+
+
+/*BOTOES*/
+
+.btn {
+    height: 3rem;
+    min-width: 8rem;
+    font-weight: bold;
+}
+
+.btn-s {
+    width: 112px;
+}
+
+.btn-laranja {
+    color: #fff;
+    background-color: #f19021;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+
+/*FORMULARIOS*/
+
+input {
+    border-radius: 0.25rem!important;
+}
+
+.form-group {
+    margin: 0;
+}
+
+.form-control:focus+.senhaEye {
+    color: #495057;
+    background-color: #fff;
+    border-color: #666666;
+    outline: 0;
+    box-shadow: 0 0 0 0 rgba(241, 244, 33, .0);
+}
+
+.formWrap {
+    position: relative;
+    display: block;
+}
+
+.formWrap label {
+    position: absolute;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.msgFeedback {
+    position: absolute;
+}

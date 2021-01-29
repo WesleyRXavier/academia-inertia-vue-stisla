@@ -1,0 +1,119 @@
+body{
+	font-family: 'Raleway', sans-serif;
+	color:#6c767e;
+	
+}
+.sessaoAcesso{
+	width:100%;
+	height:100vh;
+	background-size: cover;
+}
+
+.ajusteRow{
+	min-height: 100vh;
+
+}
+
+.fabrica{
+	width: 40%;
+}
+
+
+.selVoluntario svg{
+	width: 35%;
+	/* max-width: 112px; */
+	stroke: #f19021;
+}
+
+.selEscola svg{
+	width: 40%;
+	
+	/* max-width: 112px; */
+	
+	/*stroke: #f19021;*/
+}
+
+
+
+.selEmpresa svg{
+	width: 40%;
+	/* max-width: 112px; */
+	/* padding-top: px; */
+	/* stroke: #f19021; */
+}
+
+.selOng svg{	
+	width: 40%;
+	/* max-width: 112px; */
+}
+
+
+
+.boxCadastro{
+	padding: 30px 30px 5px 30px;
+}
+
+/* HOVER */
+
+.icSeletor a{
+	display: block;
+	border-radius: 16px;
+	padding:1rem;
+	color:#f19021;
+}
+
+.icSeletor a:hover{
+	display: block;
+	border-radius: 16px;
+	background: #f19021;
+	
+}
+
+
+
+
+	/*Alteração de cor quando seleciona o icone  */
+.icSeletor a:hover  .cls-1{
+	stroke: #ffffff;
+}
+.icSeletor a:hover  .cls-2{
+	stroke: #ffffff;
+}
+.icSeletor a:hover  span{
+	color:#ffffff;
+}
+
+/* Responsividade */
+
+
+@media (min-width: 576px) {
+	.col-md-6 {
+
+	  width: 1040px;
+  
+	}
+  }
+  
+  @media (min-width: 768px) {
+	.container {
+	  max-width: 720px;
+	}
+  }
+  
+  @media (min-width: 992px) {
+	.container {
+	  max-width: 960px;
+	}
+  }
+  
+  @media (min-width: 1200px) {
+	.container {
+	  max-width: 1140px;
+	}
+  }
+  
+
+
+
+
+
