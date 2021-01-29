@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::POSCADASTRO;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => [ 'required','string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'same:passwordConfirm'],
+            'password' => ['required', 'string', 'min:6', 'same:password_confirmation'],
         ]);
         
     }
@@ -72,13 +72,10 @@ class RegisterController extends Controller
             'name' => $data['email'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'tipo' => $data['tipo']
+            'tipo'=> 'professor',
+            
         ]);
     }
 
-    public function showRegistrationForm($tipo)
-    {
-      
-        return Inertia::render('Auth/Registro',['tipo'=>$tipo]);
-    }
+    
 }
