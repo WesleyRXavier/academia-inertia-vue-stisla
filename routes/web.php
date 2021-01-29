@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    //return Inertia::render('Home');
+    return view('auth.login');
 });
 
 Auth::routes();
