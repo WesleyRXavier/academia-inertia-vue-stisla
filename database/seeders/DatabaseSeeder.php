@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 
+use Illuminate\Database\Seeder;
+use Database\Seeders\{UsersSeed, TipoTreinoseed};
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            UsersSeed::class,
+            TipoTreinoseed::class,
+
+            ]);  
+        \App\Models\User::factory(10)->create();
+        \App\Models\Exercicio::factory(10)->create();
+        \App\Models\Treino::factory(10)->create();
+        \App\Models\Serie::factory(10)->create();
+        \App\Models\Exercicio_Serie::factory(10)->create();
+        \App\Models\Semana::factory(10)->create();
+        
     }
 }

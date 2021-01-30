@@ -1,20 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Http\Controller\Auth\RegisterController;
-use App\Http\Controller\HomeController;
-use App\Http\Controller\VoluntarioController;
-use App\Http\Middleware\Voluntario;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\{
+    HomeController,UserController,
+    ProfessorController,AlunoController
+};
 
 
 
 Route::get('/', function () {
-    return Inertia::render('Home');
-   // return view('auth.login');
+    return view('index');
 });
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Auth::routes();
 
+//ROTAS PROFESSOR
 
+Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.index');
+
+
+
+//ROTAS ALUNO
+
+Route::get('/aluno', [AlunoController::class, 'index'])->name('aluno.index');

@@ -24,10 +24,17 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'email' =>$this->faker->email,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'tipo'=> 'aluno',
+            'avatar'=> 'https://img.estadao.com.br/fotos/politica/eleicoes-2020/TO/FTO270001149172_div.jpg',
+            'objetivo'=> 'Hipertrofia',
+            'idade'=> 25,
+            'situacao'=> 'Ativo',
+            
         ];
+       
     }
 }

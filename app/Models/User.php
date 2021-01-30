@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'tipo'
+        'tipo',
     ];
 
     /**
@@ -41,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function UltimoTreino()
+    {
+        return $this->hasOne(Treino::class)->latest();
+    }
+    public function treinos()
+    {
+        return $this->hasMany(Treino::class,'user_id','id');
+    }
+
+    public function alunos(){
+        return User::where('tipo', 'aluno')->get();
+    }
 }
