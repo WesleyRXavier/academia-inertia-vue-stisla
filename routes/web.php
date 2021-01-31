@@ -19,9 +19,11 @@ Auth::routes();
 //ROTAS PROFESSOR
 
 Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.index');
+Route::post('/professor/alunos/{pesquisa}', [ProfessorController::class, 'alunos'])->name('professor.alunos');
+
 
 
 
 //ROTAS ALUNO
 
-Route::get('/aluno', [AlunoController::class, 'index'])->name('aluno.index');
+Route::get('/aluno', [AlunoController::class, 'alunosNome'])->name('aluno.alunosNome');

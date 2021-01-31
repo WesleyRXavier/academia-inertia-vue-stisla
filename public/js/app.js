@@ -2984,6 +2984,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3060,18 +3062,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    alunos: Array
-  },
+  props: {},
   data: function data() {
     return {
-      pesquisa: ''
+      pesquisa: null,
+      listaAlunos: null,
+      anterior: {
+        disabled: false
+      },
+      proximo: {
+        disabled: false
+      }
     };
+  },
+  computed: {
+    pesquisaValida: function pesquisaValida() {
+      return this.pesquisa != "" && this.pesquisa != null && !this.pesquisa.match(/^(\s)+$/);
+    }
+  },
+  mounted: function mounted() {
+    this.pesquisaAluno();
+    console.log(this.listaAlunos);
   },
   methods: {
     pesquisaAluno: function pesquisaAluno() {
-      console.log(this.pesquisa);
+      var _this = this;
+
+      var url = "professor/alunos/" + (this.pesquisaValida ? this.pesquisa : "todos");
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url).then(function (res) {
+        if (res.data.data.length > 0) {
+          _this.listaAlunos = res.data;
+
+          if (_this.listaAlunos.current_page == 1) {
+            _this.anterior.disabled = true;
+          }
+
+          if (_this.listaAlunos.current_page == _this.listaAlunos.last_page) {
+            _this.proximo.disabled = true;
+          }
+        } else {
+          _this.listaAlunos = null;
+        }
+
+        console.log(res.data);
+      })["catch"](function (e) {
+        _this.listaAlunos = null;
+        console.log("erro");
+      });
     }
   }
 });
@@ -3589,10 +3653,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section " }, [
+  return _c("section", { staticClass: "section" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "section-body " }, [
+    _c("div", { staticClass: "section-body" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
           _c("div", { staticClass: "card" }, [
@@ -3615,7 +3679,10 @@ var render = function() {
                       attrs: { type: "text", placeholder: "Search" },
                       domProps: { value: _vm.pesquisa },
                       on: {
-                        keyup: _vm.pesquisaAluno,
+                        keyup: function($event) {
+                          $event.preventDefault()
+                          return _vm.pesquisaAluno($event)
+                        },
                         input: function($event) {
                           if ($event.target.composing) {
                             return
@@ -3633,37 +3700,99 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
               _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table table-striped" }, [
-                  _c(
-                    "tbody",
-                    [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _vm._l(_vm.alunos, function(aluno) {
-                        return _c("tr", { key: aluno.id }, [
-                          _c("td", [_vm._v(_vm._s(aluno.id))]),
+                _vm.listaAlunos != null
+                  ? _c("table", { staticClass: "table table-striped" }, [
+                      _c(
+                        "tbody",
+                        [
+                          _vm._m(2),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(aluno.name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(aluno.telefone))]),
-                          _vm._v(" "),
-                          _vm._m(3, true),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("div", { staticClass: "badge badge-success" }, [
-                              _vm._v(_vm._s(aluno.situacao))
+                          _vm._l(_vm.listaAlunos.data, function(aluno) {
+                            return _c("tr", { key: aluno.id }, [
+                              _c("td", [_vm._v(_vm._s(aluno.id))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(aluno.name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(aluno.telefone))]),
+                              _vm._v(" "),
+                              _vm._m(3, true),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "badge badge-success" },
+                                  [_vm._v(_vm._s(aluno.situacao))]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(4, true)
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(4, true)
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-footer text-right" }, [
+                        _c("nav", { staticClass: "d-inline-block" }, [
+                          _c(
+                            "ul",
+                            { staticClass: "pagination mb-0" },
+                            [
+                              _c(
+                                "li",
+                                {
+                                  staticClass: "page-item",
+                                  class: _vm.anterior
+                                },
+                                [_vm._m(5)]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.listaAlunos.links, function(link) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: link.id,
+                                    staticClass: "page-item",
+                                    class: link.active ? "active" : ""
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value:
+                                              link.label > 0 &&
+                                              link.label <=
+                                                _vm.listaAlunos.last_page,
+                                            expression:
+                                              "link.label > 0 && link.label <= listaAlunos.last_page  "
+                                          }
+                                        ],
+                                        staticClass: "page-link",
+                                        attrs: { href: "" }
+                                      },
+                                      [
+                                        _c("span", { staticClass: "sr-only" }, [
+                                          _vm._v("(current)")
+                                        ]),
+                                        _vm._v(_vm._s(link.label))
+                                      ]
+                                    )
+                                  ]
+                                )
+                              }),
+                              _vm._v(" "),
+                              _vm._m(6)
+                            ],
+                            2
+                          )
                         ])
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _vm._m(5)
-                ])
+                      ])
+                    ])
+                  : _c("p", [_vm._v("Não achei os alunos")])
               ])
             ])
           ])
@@ -3742,29 +3871,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer text-right" }, [
-      _c("nav", { staticClass: "d-inline-block" }, [
-        _c("ul", { staticClass: "pagination mb-0" }, [
-          _c("li", { staticClass: "page-item " }, [
-            _c(
-              "a",
-              { staticClass: "page-link", attrs: { href: "", tabindex: "-1" } },
-              [_c("i", { staticClass: "fas fa-chevron-left" })]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item " }, [
-            _c("a", { staticClass: "page-link", attrs: { href: "" } }, [
-              _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c("a", { staticClass: "page-link", attrs: { href: "" } }, [
-              _c("i", { staticClass: "fas fa-chevron-right" })
-            ])
-          ])
-        ])
+    return _c("a", { staticClass: "page-link", attrs: { tabindex: "-1" } }, [
+      _c("i", { staticClass: "fas fa-chevron-left" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "page-item" }, [
+      _c("a", { staticClass: "page-link" }, [
+        _c("i", { staticClass: "fas fa-chevron-right" })
       ])
     ])
   }

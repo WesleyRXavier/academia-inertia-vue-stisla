@@ -53,6 +53,9 @@ class User extends Authenticatable
     }
 
     public function alunos(){
-        return User::where('tipo', 'aluno')->get();
+        return User::where('tipo', 'aluno');
+    }
+    public function professores(){
+        return User::where('tipo', 'professor');
     }
 }
