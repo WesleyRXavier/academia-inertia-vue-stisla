@@ -17,6 +17,11 @@
 
  @else
  <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('aluno.cadastro') }}">
+         <i class=" fas fa-user"></i><span>Cadastro aluno</span>
+     </a>
+ </li>
+ <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
     <a class="nav-link" href="">
          <i class=" fas fa-building"></i><span>Cadastro treino</span>
      </a>

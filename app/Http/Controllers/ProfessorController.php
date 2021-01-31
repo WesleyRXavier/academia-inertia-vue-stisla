@@ -14,8 +14,6 @@ class ProfessorController extends Controller
 
     public function index()
     {
-
-
         return Inertia::render('professor/Home');
     }
 

@@ -20,8 +20,8 @@ Auth::routes();
 
 Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.index');
 Route::post('/professor/alunos/{pesquisa}', [ProfessorController::class, 'alunos'])->name('professor.alunos');
-
-
+Route::get('/aluno/cadastro', [AlunoController::class, 'create'])->name('aluno.cadastro');
+Route::post('/aluno/store', [AlunoController::class, 'store'])->name('aluno.store');
 
 
 //ROTAS ALUNO
