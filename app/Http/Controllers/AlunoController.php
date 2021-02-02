@@ -35,13 +35,12 @@ class AlunoController extends Controller
     ]);
 
     if ($validacao->fails()) {
-      $erro = [
-        'erro' => $validacao->errors(),
-        'status' => 400,
-      ];
-      
-      return response()->json($erro);
+      return response()->json([
+        'erros'  => $validacao->errors(), 
+        'status' => 400
+        ]);
     }
+
     $user = new User();
     $user->name = $request->name;
     $user->email = $request->email;
@@ -50,12 +49,19 @@ class AlunoController extends Controller
     $user->tipo = 'aluno';
     $user->situacao ='Ativo';
     $user->password = Hash::make('aluno@123');
+
     try { 
       $user->save();
-      return  response()->json($user);
+      return response()->json([
+        'user'   => $user, 
+        'status' => 200
+        ]);
       
   } catch (Exception $e) { 
-    return  response()->json($e);
+    return response()->json([
+      'erros'  => $e, 
+      'status' => 500
+      ]);
    
   }
    

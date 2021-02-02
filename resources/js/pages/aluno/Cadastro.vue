@@ -138,37 +138,47 @@ export default {
         .then((res) => {
           var resposta = res.data;
           console.log(resposta);
-          if (resposta.erro.email) {
+          if(resposta.status ==200){
+            this.form.name = '';
+             this.form.email = '';
+              this.form.objetivo = '';
+               this.form.idade = '';
+
+          }else{
+
+          if (resposta.erros.email) {
             this.email.invalido = true;
-            this.email.msg = resposta.erro.email[0];
+            this.email.msg = resposta.erros.email[0];
           } else {
             this.email.invalido = false;
             this.email.msg = "";
           }
-          if (resposta.erro.name) {
+          if (resposta.erros.name) {
             this.nome.invalido = true;
-            this.nome.msg = resposta.erro.name[0];
+            this.nome.msg = resposta.erros.name[0];
           } else {
             this.nome.invalido = false;
             this.nome.msg = "";
           }
-          if (resposta.erro.idade) {
+          if (resposta.erros.idade) {
             this.idade.invalido = true;
-            this.idade.msg = resposta.erro.idade[0];
+            this.idade.msg = resposta.erros.idade[0];
           } else {
             this.idade.invalido = false;
             this.idade.msg = "";
           }
-          if (resposta.erro.objetivo) {
+          if (resposta.erros.objetivo) {
             this.objetivo.invalido = true;
-            this.objetivo.msg = resposta.erro.objetivo[0];
+            this.objetivo.msg = resposta.erros.objetivo[0];
           } else {
             this.objetivo.invalido = false;
             this.objetivo.msg = "";
           }
+          }
         })
+        
         .catch((e) => {
-          console.log(e);
+          //console.log(e);
         });
     },
   },

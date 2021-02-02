@@ -3092,39 +3092,45 @@ __webpack_require__.r(__webpack_exports__);
         var resposta = res.data;
         console.log(resposta);
 
-        if (resposta.erro.email) {
-          _this.email.invalido = true;
-          _this.email.msg = resposta.erro.email[0];
+        if (resposta.status == 200) {
+          _this.form.name = '';
+          _this.form.email = '';
+          _this.form.objetivo = '';
+          _this.form.idade = '';
         } else {
-          _this.email.invalido = false;
-          _this.email.msg = "";
-        }
+          if (resposta.erros.email) {
+            _this.email.invalido = true;
+            _this.email.msg = resposta.erros.email[0];
+          } else {
+            _this.email.invalido = false;
+            _this.email.msg = "";
+          }
 
-        if (resposta.erro.name) {
-          _this.nome.invalido = true;
-          _this.nome.msg = resposta.erro.name[0];
-        } else {
-          _this.nome.invalido = false;
-          _this.nome.msg = "";
-        }
+          if (resposta.erros.name) {
+            _this.nome.invalido = true;
+            _this.nome.msg = resposta.erros.name[0];
+          } else {
+            _this.nome.invalido = false;
+            _this.nome.msg = "";
+          }
 
-        if (resposta.erro.idade) {
-          _this.idade.invalido = true;
-          _this.idade.msg = resposta.erro.idade[0];
-        } else {
-          _this.idade.invalido = false;
-          _this.idade.msg = "";
-        }
+          if (resposta.erros.idade) {
+            _this.idade.invalido = true;
+            _this.idade.msg = resposta.erros.idade[0];
+          } else {
+            _this.idade.invalido = false;
+            _this.idade.msg = "";
+          }
 
-        if (resposta.erro.objetivo) {
-          _this.objetivo.invalido = true;
-          _this.objetivo.msg = resposta.erro.objetivo[0];
-        } else {
-          _this.objetivo.invalido = false;
-          _this.objetivo.msg = "";
+          if (resposta.erros.objetivo) {
+            _this.objetivo.invalido = true;
+            _this.objetivo.msg = resposta.erros.objetivo[0];
+          } else {
+            _this.objetivo.invalido = false;
+            _this.objetivo.msg = "";
+          }
         }
-      })["catch"](function (e) {
-        console.log(e);
+      })["catch"](function (e) {//console.log(e);
       });
     }
   }
