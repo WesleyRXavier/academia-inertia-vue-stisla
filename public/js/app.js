@@ -3047,6 +3047,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3057,7 +3065,19 @@ __webpack_require__.r(__webpack_exports__);
         objetivo: "",
         idade: ""
       },
+      nome: {
+        invalido: false,
+        msg: ""
+      },
       email: {
+        invalido: false,
+        msg: ""
+      },
+      idade: {
+        invalido: false,
+        msg: ""
+      },
+      objetivo: {
         invalido: false,
         msg: ""
       }
@@ -3070,14 +3090,41 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/aluno/store", this.form).then(function (res) {
         var resposta = res.data;
-        console.log(resposta.erro.email);
+        console.log(resposta);
 
         if (resposta.erro.email) {
           _this.email.invalido = true;
           _this.email.msg = resposta.erro.email[0];
+        } else {
+          _this.email.invalido = false;
+          _this.email.msg = "";
+        }
+
+        if (resposta.erro.name) {
+          _this.nome.invalido = true;
+          _this.nome.msg = resposta.erro.name[0];
+        } else {
+          _this.nome.invalido = false;
+          _this.nome.msg = "";
+        }
+
+        if (resposta.erro.idade) {
+          _this.idade.invalido = true;
+          _this.idade.msg = resposta.erro.idade[0];
+        } else {
+          _this.idade.invalido = false;
+          _this.idade.msg = "";
+        }
+
+        if (resposta.erro.objetivo) {
+          _this.objetivo.invalido = true;
+          _this.objetivo.msg = resposta.erro.objetivo[0];
+        } else {
+          _this.objetivo.invalido = false;
+          _this.objetivo.msg = "";
         }
       })["catch"](function (e) {
-        console.log("erro");
+        console.log(e);
       });
     }
   }
@@ -3806,7 +3853,8 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text", value: "Rizal Fakhri", required: "" },
+                  class: _vm.nome.invalido ? "is-invalid" : "",
+                  attrs: { type: "text", required: "" },
                   domProps: { value: _vm.form.name },
                   on: {
                     input: function($event) {
@@ -3816,7 +3864,15 @@ var render = function() {
                       _vm.$set(_vm.form, "name", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.nome.msg) +
+                      "\n              "
+                  )
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -3850,7 +3906,7 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   class: _vm.email.invalido ? "is-invalid" : "",
-                  attrs: { type: "text", value: "Rizal Fakhri", required: "" },
+                  attrs: { type: "text", required: "" },
                   domProps: { value: _vm.form.email },
                   on: {
                     input: function($event) {
@@ -3864,7 +3920,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "invalid-feedback" }, [
                   _vm._v(
-                    "\n               " +
+                    "\n                " +
                       _vm._s(_vm.email.msg) +
                       "\n              "
                   )
@@ -3900,8 +3956,9 @@ var render = function() {
                       expression: "form.idade"
                     }
                   ],
-                  staticClass: "form-control is-valid",
-                  attrs: { type: "text", value: "Rizal Fakhri", required: "" },
+                  staticClass: "form-control",
+                  class: _vm.idade.invalido ? "is-invalid" : "",
+                  attrs: { type: "text", required: "" },
                   domProps: { value: _vm.form.idade },
                   on: {
                     input: function($event) {
@@ -3911,7 +3968,15 @@ var render = function() {
                       _vm.$set(_vm.form, "idade", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.idade.msg) +
+                      "\n              "
+                  )
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -3943,8 +4008,9 @@ var render = function() {
                       expression: "form.objetivo"
                     }
                   ],
-                  staticClass: "form-control is-valid",
-                  attrs: { type: "text", value: "Rizal Fakhri", required: "" },
+                  staticClass: "form-control",
+                  class: _vm.objetivo.invalido ? "is-invalid" : "",
+                  attrs: { type: "text", required: "" },
                   domProps: { value: _vm.form.objetivo },
                   on: {
                     input: function($event) {
@@ -3954,7 +4020,15 @@ var render = function() {
                       _vm.$set(_vm.form, "objetivo", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.objetivo.msg) +
+                      "\n              "
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),

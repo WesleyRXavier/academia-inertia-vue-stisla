@@ -19,10 +19,13 @@
                 <input
                   type="text"
                   class="form-control"
-                  value="Rizal Fakhri"
+                  :class="nome.invalido ? 'is-invalid' : ''"
                   required=""
                   v-model="form.name"
                 />
+                <div class="invalid-feedback">
+                  {{ nome.msg }}
+                </div>
               </div>
               <div class="form-group">
                 <label
@@ -36,12 +39,11 @@
                   type="text"
                   class="form-control"
                   :class="email.invalido ? 'is-invalid' : ''"
-                  value="Rizal Fakhri"
                   required=""
                   v-model="form.email"
                 />
                 <div class="invalid-feedback">
-                 {{ email.msg }}
+                  {{ email.msg }}
                 </div>
               </div>
               <div class="form-group">
@@ -54,11 +56,14 @@
                 >
                 <input
                   type="text"
-                  class="form-control is-valid"
-                  value="Rizal Fakhri"
+                  class="form-control"
+                  :class="idade.invalido ? 'is-invalid' : ''"
                   required=""
                   v-model="form.idade"
                 />
+                <div class="invalid-feedback">
+                  {{ idade.msg }}
+                </div>
               </div>
               <div class="form-group">
                 <label
@@ -70,11 +75,14 @@
                 >
                 <input
                   type="text"
-                  class="form-control is-valid"
-                  value="Rizal Fakhri"
+                  class="form-control"
+                  :class="objetivo.invalido ? 'is-invalid' : ''"
                   required=""
                   v-model="form.objetivo"
                 />
+                <div class="invalid-feedback">
+                  {{ objetivo.msg }}
+                </div>
               </div>
             </div>
             <div class="card-footer text-right">
@@ -93,6 +101,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -102,7 +111,19 @@ export default {
         objetivo: "",
         idade: "",
       },
+      nome: {
+        invalido: false,
+        msg: "",
+      },
       email: {
+        invalido: false,
+        msg: "",
+      },
+      idade: {
+        invalido: false,
+        msg: "",
+      },
+      objetivo: {
         invalido: false,
         msg: "",
       },
@@ -116,14 +137,38 @@ export default {
         .post("/aluno/store", this.form)
         .then((res) => {
           var resposta = res.data;
-          console.log(resposta.erro.email);
+          console.log(resposta);
           if (resposta.erro.email) {
             this.email.invalido = true;
             this.email.msg = resposta.erro.email[0];
+          } else {
+            this.email.invalido = false;
+            this.email.msg = "";
+          }
+          if (resposta.erro.name) {
+            this.nome.invalido = true;
+            this.nome.msg = resposta.erro.name[0];
+          } else {
+            this.nome.invalido = false;
+            this.nome.msg = "";
+          }
+          if (resposta.erro.idade) {
+            this.idade.invalido = true;
+            this.idade.msg = resposta.erro.idade[0];
+          } else {
+            this.idade.invalido = false;
+            this.idade.msg = "";
+          }
+          if (resposta.erro.objetivo) {
+            this.objetivo.invalido = true;
+            this.objetivo.msg = resposta.erro.objetivo[0];
+          } else {
+            this.objetivo.invalido = false;
+            this.objetivo.msg = "";
           }
         })
         .catch((e) => {
-          console.log("erro");
+          console.log(e);
         });
     },
   },
